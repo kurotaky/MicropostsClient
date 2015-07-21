@@ -13,6 +13,7 @@
 		2108F53F1B45510E00E22BE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2108F53E1B45510E00E22BE1 /* Images.xcassets */; };
 		2108F5421B45510E00E22BE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2108F5401B45510E00E22BE1 /* LaunchScreen.xib */; };
 		2108F54E1B45510E00E22BE1 /* MicropostsClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2108F54D1B45510E00E22BE1 /* MicropostsClientTests.swift */; };
+		216D75361B5DC084004F145F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216D75351B5DC084004F145F /* LoginViewController.swift */; };
 		21A228351B511C8400A7D727 /* ParsedTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A228341B511C8400A7D727 /* ParsedTweet.swift */; };
 		21A228371B520B4D00A7D727 /* ParsedTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A228361B520B4D00A7D727 /* ParsedTweetCell.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		2108F5471B45510E00E22BE1 /* MicropostsClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MicropostsClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2108F54C1B45510E00E22BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2108F54D1B45510E00E22BE1 /* MicropostsClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicropostsClientTests.swift; sourceTree = "<group>"; };
+		216D75351B5DC084004F145F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21A228341B511C8400A7D727 /* ParsedTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedTweet.swift; sourceTree = "<group>"; };
 		21A228361B520B4D00A7D727 /* ParsedTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedTweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +91,7 @@
 				2108F5401B45510E00E22BE1 /* LaunchScreen.xib */,
 				2108F5351B45510E00E22BE1 /* Supporting Files */,
 				21A228361B520B4D00A7D727 /* ParsedTweetCell.swift */,
+				216D75351B5DC084004F145F /* LoginViewController.swift */,
 			);
 			path = MicropostsClient;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				21A228371B520B4D00A7D727 /* ParsedTweetCell.swift in Sources */,
 				21A228351B511C8400A7D727 /* ParsedTweet.swift in Sources */,
 				2108F53A1B45510E00E22BE1 /* ViewController.swift in Sources */,
+				216D75361B5DC084004F145F /* LoginViewController.swift in Sources */,
 				2108F5381B45510E00E22BE1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
