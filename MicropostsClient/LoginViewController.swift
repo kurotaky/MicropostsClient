@@ -22,6 +22,12 @@ class LoginViewController: UIViewController {
     }
     
 
+    @IBAction func closeViewController(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            println("closed !!!")
+        })
+    }
+    
     /*
     // MARK: - Navigation
 
