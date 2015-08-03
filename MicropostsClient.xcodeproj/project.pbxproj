@@ -16,6 +16,7 @@
 		216D75361B5DC084004F145F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216D75351B5DC084004F145F /* LoginViewController.swift */; };
 		21A228351B511C8400A7D727 /* ParsedTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A228341B511C8400A7D727 /* ParsedTweet.swift */; };
 		21A228371B520B4D00A7D727 /* ParsedTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A228361B520B4D00A7D727 /* ParsedTweetCell.swift */; };
+		F88E7965F3F4B32BA39883CB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05906DDC6FA941E73A6B74A1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05906DDC6FA941E73A6B74A1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2108F5321B45510E00E22BE1 /* MicropostsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicropostsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2108F5361B45510E00E22BE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2108F5371B45510E00E22BE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +44,8 @@
 		216D75351B5DC084004F145F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21A228341B511C8400A7D727 /* ParsedTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedTweet.swift; sourceTree = "<group>"; };
 		21A228361B520B4D00A7D727 /* ParsedTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsedTweetCell.swift; sourceTree = "<group>"; };
+		2CB8697D70D86EBC06A65D64 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		668E876D56C559E5EDA84847 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F88E7965F3F4B32BA39883CB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +73,8 @@
 				2108F5341B45510E00E22BE1 /* MicropostsClient */,
 				2108F54A1B45510E00E22BE1 /* MicropostsClientTests */,
 				2108F5331B45510E00E22BE1 /* Products */,
+				8D18CF701FC99034CD3C0B52 /* Pods */,
+				9C3EBC30E339947D1191B0DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +128,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8D18CF701FC99034CD3C0B52 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				668E876D56C559E5EDA84847 /* Pods.debug.xcconfig */,
+				2CB8697D70D86EBC06A65D64 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9C3EBC30E339947D1191B0DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05906DDC6FA941E73A6B74A1 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,9 +152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2108F5511B45510E00E22BE1 /* Build configuration list for PBXNativeTarget "MicropostsClient" */;
 			buildPhases = (
+				98E96902B88708576D919F1F /* Check Pods Manifest.lock */,
 				2108F52E1B45510E00E22BE1 /* Sources */,
 				2108F52F1B45510E00E22BE1 /* Frameworks */,
 				2108F5301B45510E00E22BE1 /* Resources */,
+				E785132AC99228D050EBA11F /* Embed Pods Frameworks */,
+				781574F461BB024B4B3A00EC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -215,6 +242,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		781574F461BB024B4B3A00EC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98E96902B88708576D919F1F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E785132AC99228D050EBA11F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2108F52E1B45510E00E22BE1 /* Sources */ = {
@@ -350,6 +425,7 @@
 		};
 		2108F5521B45510E00E22BE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 668E876D56C559E5EDA84847 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MicropostsClient/Info.plist;
@@ -360,6 +436,7 @@
 		};
 		2108F5531B45510E00E22BE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CB8697D70D86EBC06A65D64 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MicropostsClient/Info.plist;

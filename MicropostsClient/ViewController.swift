@@ -38,6 +38,15 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         reloadTweets()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        // ログインチェックする
+        // ログインしていたらViewContorller (TimeLineViewControllerにあとでかえるかも)
+        // していなかったらLoginViewController
+        let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+        self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,6 +85,10 @@ class ViewController: UITableViewController {
     
     func reloadTweets() {
         tableView.reloadData()
+    }
+    
+    @IBAction func comeHome(segue: UIStoryboardSegue) {
+        
     }
 
 }
