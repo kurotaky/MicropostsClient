@@ -8,6 +8,7 @@
 
 import UIKit
 import Social
+import Alamofire
 
 let defaultAvatarURL = NSURL(string: "https://abs.twimg.com/sticky/default_profile_images/" + "default_profile_6_200x200.png")
 
@@ -43,9 +44,35 @@ class ViewController: UITableViewController {
         // ログインチェックする
         // ログインしていたらViewContorller (TimeLineViewControllerにあとでかえるかも)
         // していなかったらLoginViewController
-        let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
-        self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
-        
+        let result = basicAuthenticate()
+
+        if !result {
+            let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+            self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
+        } else {
+            let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("NavigationViewController") as! UINavigationController
+            self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
+        }
+    }
+
+    func basicAuthenticate() -> Bool {
+//        println("!!! basicAuthenticate !!!")
+//        let userDefault = NSUserDefaults.standardUserDefaults()
+//        let user = userDefault.objectForKey("username") as! String
+//        let password = userDefault.objectForKey("password") as! String
+//        println(user)
+//        println(password)
+//        
+//        Alamofire.request(.GET, "http://localhost:3000/api/microposts.json")
+//            .authenticate(user: user, password: password)
+//            .response { (request, response, data, error) -> Void in
+//                if response?.statusCode == 200 {
+//                    println("200 OK だよ〜")
+//                } else {
+//                    println("認証されてないよ")
+//                }
+//            }
+        return true
     }
 
     override func didReceiveMemoryWarning() {
