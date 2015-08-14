@@ -3,3 +3,4 @@
 use_frameworks!
 
 pod 'Alamofire', '~> 1.3.0'
+pod 'SwiftyJSON', '~> 2.2.1'

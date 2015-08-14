@@ -8,10 +8,11 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
@@ -33,32 +34,27 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonDidPush(sender: UIBarButtonItem) {
-        // BASIC認証
-        let user = usernameTextField.text
+        let email = emailTextField.text
         let password = passwordTextField.text
-        
-        //    var request = NSMutableURLRequest(URL: NSURL(string: "http://localhost:3000/api/microposts.json")!, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 0.0)
-        //        request.addValue("no-cache", forHTTPHeaderField: "Cache-Control")
-        // Alamofire.request(request)
-        Alamofire.request(.GET, "http://localhost:3000/api/microposts.json")
-            .authenticate(user: user, password: password)
-            .response { (request, response, data, error) -> Void in
-                println(request)
-                println(response)
+
+        let params = ["email": email, "password": password]
+        Alamofire.request(.POST, "http://localhost:3000/api/authentication_tokens", parameters: params)
+            .response { request, response, data, error in
                 if response?.statusCode == 200 {
+                    let json = JSON(data: data!)
+                    let token: String? = json["authentication_token"].string
                     let userDefaults = NSUserDefaults.standardUserDefaults()
-                    userDefaults.setObject(user, forKey: "username")
-                    userDefaults.setObject(password, forKey: "password")
+                    userDefaults.setObject(token!, forKey: "authentication_token")
+                    userDefaults.setObject(email, forKey: "email")
                     userDefaults.synchronize()
-                    //println(userDefaults.stringForKey("username"))
-                    //println(userDefaults.stringForKey("password"))
+                    // tokenを保存したらTimelineを表示する
                 } else {
                     // アラート: もう一回入力してね
                     let alertController = UIAlertController(title: "エラー", message: "入力項目を確認してね", preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
                     self.navigationController?.presentViewController(alertController, animated: true, completion: nil)
                 }
-        }
+            }
     }
     /*
     // MARK: - Navigation

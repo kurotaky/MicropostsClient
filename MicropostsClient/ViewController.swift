@@ -44,35 +44,39 @@ class ViewController: UITableViewController {
         // ログインチェックする
         // ログインしていたらViewContorller (TimeLineViewControllerにあとでかえるかも)
         // していなかったらLoginViewController
-        let result = basicAuthenticate()
-
+        let result = Authenticate()
         if !result {
+            // 認証していないならログイン画面を表示する
             let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
-            self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
-        } else {
-            let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("NavigationViewController") as! UINavigationController
             self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
         }
     }
 
-    func basicAuthenticate() -> Bool {
-//        println("!!! basicAuthenticate !!!")
-//        let userDefault = NSUserDefaults.standardUserDefaults()
-//        let user = userDefault.objectForKey("username") as! String
-//        let password = userDefault.objectForKey("password") as! String
-//        println(user)
-//        println(password)
-//        
-//        Alamofire.request(.GET, "http://localhost:3000/api/microposts.json")
+    func Authenticate() -> Bool {
+        // NSUserDefaults から値を取り出す
+        // tokenがNSUserDefaultsに存在するかチェック
+        // 存在しなかったらfalseを返す
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        if let token = userDefault.objectForKey("authentication_token") as? String {
+            // tokenがuserDefaultsに存在するならAPIにtokenを送って認証する
+            // Alamofire.request で tokenを渡す
+            // 認証OKなら true を返す
+        } else {
+            // userDefaultsにtokenが存在しない場合はログインからやり直し
+            return false
+        }
+//        Alamofire.request(.GET, "http://localhost:3000/api/microposts/auth")
 //            .authenticate(user: user, password: password)
 //            .response { (request, response, data, error) -> Void in
 //                if response?.statusCode == 200 {
 //                    println("200 OK だよ〜")
+//                    result = true
 //                } else {
 //                    println("認証されてないよ")
+//                    result = false
 //                }
 //            }
-        return true
+        return result
     }
 
     override func didReceiveMemoryWarning() {
