@@ -37,45 +37,49 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        reloadTweets()
     }
-    
+
+    private var isAuthenticated = false
+
     override func viewWillAppear(animated: Bool) {
         // ログインしていたらViewContorller (TimeLineViewControllerにあとでかえるかも)
         // していなかったらLoginViewController
-        let result = Authenticate()
-        if !result {
+        // トークンがセットされていたらAPIにtokenとemailを送って認証する
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        
+        if let token = userDefault.objectForKey("authentication_token") as? String {
+            let email = userDefault.objectForKey("email") as? String
+            println("viewWillAppear")
+            println(token)
+            println(email)
+            println(self.isAuthenticated)
+            authenticateFromToken(token, email: email!) // 認証結果をresultに格納
+        }
+
+        if !self.isAuthenticated {
             // 認証していないならログイン画面を表示する
             let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
             self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
         }
     }
 
-    func Authenticate() -> Bool {
+    func authenticateFromToken(token: String, email: String) {
         // NSUserDefaults から値を取り出す
         // tokenがNSUserDefaultsに存在するかチェック
         // 存在しなかったらfalseを返す
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        if let token = userDefault.objectForKey("authentication_token") as? String {
-            if let email = userDefault.objectForKey("email") as? String {
-                // tokenがuserDefaultsに存在するならAPIにtokenを送って認証する
-                // Alamofire.request でemailとauthentication_tokenを渡す
-                let params = ["authentication_token": token, "email": email]
-                Alamofire.request(.GET, "http://localhost:3000/api/microposts/feed_items", parameters: params)
-                    .response { request, response, data, error in
-                        if response?.statusCode == 200 {
-                            // true
-                        } else {
-                            // false
-                        }
+        // tokenがuserDefaultsに存在するならAPIにtokenを送って認証する
+        // Alamofire.request でemailとauthentication_tokenを渡す
+        let params = ["authentication_token": token, "email": email]
+        Alamofire.request(.GET, "http://localhost:3000/api/microposts/feed_items", parameters: params)
+            .response { request, response, data, error in
+                if response?.statusCode == 200 {
+                    println("200 !!!")
+                    self.isAuthenticated = true
+                } else {
+                    println("40x !!!")
+                    self.isAuthenticated = false
                 }
-            } else {
-                // userDefaultsにemailが存在しない場合はログインからやり直し
-            }
-        } else {
-            // userDefaultsにtokenが存在しない場合はログインからやり直し
         }
-        return false
     }
 
     override func didReceiveMemoryWarning() {
