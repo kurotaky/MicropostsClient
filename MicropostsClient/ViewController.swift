@@ -41,7 +41,6 @@ class ViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        // ログインチェックする
         // ログインしていたらViewContorller (TimeLineViewControllerにあとでかえるかも)
         // していなかったらLoginViewController
         let result = Authenticate()
@@ -58,25 +57,25 @@ class ViewController: UITableViewController {
         // 存在しなかったらfalseを返す
         let userDefault = NSUserDefaults.standardUserDefaults()
         if let token = userDefault.objectForKey("authentication_token") as? String {
-            // tokenがuserDefaultsに存在するならAPIにtokenを送って認証する
-            // Alamofire.request で tokenを渡す
-            // 認証OKなら true を返す
+            if let email = userDefault.objectForKey("email") as? String {
+                // tokenがuserDefaultsに存在するならAPIにtokenを送って認証する
+                // Alamofire.request でemailとauthentication_tokenを渡す
+                let params = ["authentication_token": token, "email": email]
+                Alamofire.request(.GET, "http://localhost:3000/api/microposts/feed_items", parameters: params)
+                    .response { request, response, data, error in
+                        if response?.statusCode == 200 {
+                            // true
+                        } else {
+                            // false
+                        }
+                }
+            } else {
+                // userDefaultsにemailが存在しない場合はログインからやり直し
+            }
         } else {
             // userDefaultsにtokenが存在しない場合はログインからやり直し
-            return false
         }
-//        Alamofire.request(.GET, "http://localhost:3000/api/microposts/auth")
-//            .authenticate(user: user, password: password)
-//            .response { (request, response, data, error) -> Void in
-//                if response?.statusCode == 200 {
-//                    println("200 OK だよ〜")
-//                    result = true
-//                } else {
-//                    println("認証されてないよ")
-//                    result = false
-//                }
-//            }
-        return result
+        return false
     }
 
     override func didReceiveMemoryWarning() {
