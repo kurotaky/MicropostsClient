@@ -38,7 +38,8 @@ class LoginViewController: UIViewController {
         let password = passwordTextField.text
 
         let params = ["email": email, "password": password]
-        Alamofire.request(.POST, "http://localhost:3000/api/authentication_tokens", parameters: params)
+        // Alamofire.request(.POST, "http://localhost:3000/api/authentication_tokens", parameters: params)
+        Alamofire.request(.POST, "https://sample-app-1234kuro.sqale.jp/api/authentication_tokens", parameters: params)
             .response { request, response, data, error in
                 if response?.statusCode == 200 {
                     let json = JSON(data: data!)

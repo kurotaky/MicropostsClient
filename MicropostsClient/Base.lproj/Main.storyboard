@@ -119,13 +119,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bOz-fS-kEc" id="QA9-20-Ro0">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M0w-f0-IPY">
-                                            <rect key="frame" x="8" y="8" width="75" height="75"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="VQp-xe-c95"/>
-                                                <constraint firstAttribute="height" constant="75" id="fRv-t5-QyF"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ce-Us-ATk">
                                             <rect key="frame" x="91" y="8" width="501" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -144,6 +137,13 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M0w-f0-IPY">
+                                            <rect key="frame" x="8" y="8" width="75" height="75"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="75" id="VQp-xe-c95"/>
+                                                <constraint firstAttribute="height" constant="75" id="fRv-t5-QyF"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="3U9-ko-9IY" secondAttribute="trailing" id="5PO-Ql-O6x"/>
@@ -241,10 +241,10 @@ tweet text</string>
             </objects>
             <point key="canvasLocation" x="1635" y="1621"/>
         </scene>
-        <!--View Controller-->
+        <!--User Detail View Controller-->
         <scene sceneID="fKX-6a-Wwk">
             <objects>
-                <viewController id="396-MH-9UT" sceneMemberID="viewController">
+                <viewController id="396-MH-9UT" customClass="UserDetailViewController" customModule="MicropostsClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JVU-2x-dhi"/>
                         <viewControllerLayoutGuide type="bottom" id="lD8-F3-DIA"/>
@@ -256,7 +256,7 @@ tweet text</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserDetail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwF-Gb-Yci">
                                 <rect key="frame" x="260" y="120" width="80" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

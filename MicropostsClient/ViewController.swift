@@ -19,8 +19,6 @@ class ViewController: UITableViewController {
         ParsedTweet(tweetText: "ふぇーーー", userName: "kurotaky", createdAt: "2014-08-20 19:46:30 JST", userAvatarURL: defaultAvatarURL)
     ]
     
-    @IBOutlet weak var twitterWebView: UIWebView!
-
     @IBAction func handleTweetButtonTapped(sender: UIButton) {
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let tweetVC = SLComposeViewController (forServiceType: SLServiceTypeTwitter)
@@ -32,7 +30,7 @@ class ViewController: UITableViewController {
     }
 
     @IBAction func handleShowMyTweetsTapped(sender: UIButton) {
-        twitterWebView.loadRequest(NSURLRequest(URL: NSURL(string: "http://twitter.com/kurotaky")!))
+        
     }
 
     override func viewDidLoad() {
@@ -42,24 +40,14 @@ class ViewController: UITableViewController {
     private var isAuthenticated = false
 
     override func viewWillAppear(animated: Bool) {
-        // ログインしていたらViewContorller (TimeLineViewControllerにあとでかえるかも)
-        // していなかったらLoginViewController
+        // ログイン済みなら ViewContorller (TimeLineView)を表示
+        // 認証していなかったら LoginViewController を表示
+
         // トークンがセットされていたらAPIにtokenとemailを送って認証する
         let userDefault = NSUserDefaults.standardUserDefaults()
-        
         if let token = userDefault.objectForKey("authentication_token") as? String {
             let email = userDefault.objectForKey("email") as? String
-            println("viewWillAppear")
-            println(token)
-            println(email)
-            println(self.isAuthenticated)
             authenticateFromToken(token, email: email!) // 認証結果をresultに格納
-        }
-
-        if !self.isAuthenticated {
-            // 認証していないならログイン画面を表示する
-            let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
-            self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
         }
     }
 
@@ -70,7 +58,8 @@ class ViewController: UITableViewController {
         // tokenがuserDefaultsに存在するならAPIにtokenを送って認証する
         // Alamofire.request でemailとauthentication_tokenを渡す
         let params = ["authentication_token": token, "email": email]
-        Alamofire.request(.GET, "http://localhost:3000/api/microposts/feed_items", parameters: params)
+        // Alamofire.request(.GET, "http://localhost:3000/api/microposts/feed_items", parameters: params)
+        Alamofire.request(.GET, "https://sample-app-1234kuro.sqale.jp/api/microposts/feed_items", parameters: params)
             .response { request, response, data, error in
                 if response?.statusCode == 200 {
                     println("200 !!!")
@@ -78,6 +67,11 @@ class ViewController: UITableViewController {
                 } else {
                     println("40x !!!")
                     self.isAuthenticated = false
+                }
+                if !self.isAuthenticated {
+                    // 認証していないならログイン画面を表示する
+                    let navigationController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginNavigationController") as! UINavigationController
+                    self.navigationController?.presentViewController(navigationController, animated: true, completion: nil)
                 }
         }
     }
